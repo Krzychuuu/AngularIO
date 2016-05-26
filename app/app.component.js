@@ -14,10 +14,11 @@ var AppComponent = (function () {
         this.title = 'Online library book list';
         this.books = BOOKS;
     }
+    AppComponent.prototype.onSelect = function (book) { this.selectedBook = book; };
     AppComponent = __decorate([
         core_1.Component({
             selector: 'my-app',
-            template: "\n\t<h1>{{title}}</h1>\n\t<h2>Book List:</h2>\n\t<ul class=\"book-list\">\n\t\t<li *ngFor=\"let book of books\">\n\t\t\t<span class=\"book-list-element\"><b>\"{{book.title}}\"</b>, by: {{book.author}}</span>\n\t\t</li>\n\t</ul>\n\t"
+            template: "\n\t<h1>{{title}}</h1>\n\t<h2>Book List:</h2>\n\t<ul class=\"book-list\">\n\t\t<li *ngFor=\"let book of books\" (click)=\"onSelect(book)\"\n\t\t\t[class.selected]=\"book === selectedBook\">\n\t\t\t<span class=\"book-list-element\"><b>\"{{book.title}}\"</b>, by: {{book.author}}</span>\n\t\t</li>\n\t</ul>\n\t<hr>\n\t<div *ngIf=\"selectedBook\">\n\t\t<h2><b>Fast edition for:</b><br>[{{selectedBook.title}}], written by: {{selectedBook.author}}</h2>\n\t\t<div>\n\t\t    <label>Title: </label>\n\t\t    <input [(ngModel)]=\"selectedBook.title\" placeholder=\"title\"/>\n\t\t    <label>Author: </label>\n\t\t    <input [(ngModel)]=\"selectedBook.author\" placeholder=\"author\"/>\n\t\t</div>\n\t</div>\n\n\t"
         }), 
         __metadata('design:paramtypes', [])
     ], AppComponent);

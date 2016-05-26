@@ -17,7 +17,7 @@ body, input[text], button {
   font-family: Cambria, Georgia; 
 }
 .selected {
-	border: 1px red dashed;
+	background-color: #00cccc !important;
 }
 .book-list {
 	list-style-type: none;

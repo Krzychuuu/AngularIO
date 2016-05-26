@@ -12,15 +12,12 @@ var core_1 = require('@angular/core');
 var AppComponent = (function () {
     function AppComponent() {
         this.title = 'Online library book list';
-        this.book = {
-            title: 'Odysey',
-            author: 'Homer'
-        };
+        this.books = BOOKS;
     }
     AppComponent = __decorate([
         core_1.Component({
             selector: 'my-app',
-            template: "\n\t<h1>{{title}}</h1>\n\t<h2>First book:</h2>\n\t<div>\"{{book.title}}\", by: {{book.author}}</div>\n\t"
+            template: "\n\t<h1>{{title}}</h1>\n\t<h2>Book List:</h2>\n\t<ul class=\"book-list\">\n\t\t<li *ngFor=\"let book of books\">\n\t\t\t<span class=\"book-list-element\">\"{{book.title}}\", by: {{book.author}}</span>\n\t\t</li>\n\t</ul>\n\t"
         }), 
         __metadata('design:paramtypes', [])
     ], AppComponent);
@@ -33,4 +30,9 @@ var Book = (function () {
     return Book;
 }());
 exports.Book = Book;
+var BOOKS = [
+    { "title": "Romeo and Juliet", "author": "Shakespear" },
+    { "title": "Odysey", "author": "Homer" },
+    { "title": "Cooking book", "author": "Gordon Ramsay" }
+];
 //# sourceMappingURL=app.component.js.map

@@ -8,7 +8,7 @@ import { Component } from '@angular/core';
 	<h2>Book List:</h2>
 	<ul class="book-list">
 		<li *ngFor="let book of books">
-			<span class="book-list-element">"{{book.title}}", by: {{book.author}}</span>
+			<span class="book-list-element"><b>"{{book.title}}"</b>, by: {{book.author}}</span>
 		</li>
 	</ul>
 	`
@@ -24,6 +24,7 @@ export class Book {
 	author: string;
 }
 
+var BOOKS: Book[] = [
 	{ "title": "Romeo and Juliet", "author": "Shakespear" },
 	{ "title": "Odysey", "author": "Homer" },
 	{ "title": "Cooking book", "author": "Gordon Ramsay" }

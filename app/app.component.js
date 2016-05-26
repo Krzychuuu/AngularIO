@@ -17,7 +17,7 @@ var AppComponent = (function () {
     AppComponent = __decorate([
         core_1.Component({
             selector: 'my-app',
-            template: "\n\t<h1>{{title}}</h1>\n\t<h2>Book List:</h2>\n\t<ul class=\"book-list\">\n\t\t<li *ngFor=\"let book of books\">\n\t\t\t<span class=\"book-list-element\">\"{{book.title}}\", by: {{book.author}}</span>\n\t\t</li>\n\t</ul>\n\t"
+            template: "\n\t<h1>{{title}}</h1>\n\t<h2>Book List:</h2>\n\t<ul class=\"book-list\">\n\t\t<li *ngFor=\"let book of books\">\n\t\t\t<span class=\"book-list-element\"><b>\"{{book.title}}\"</b>, by: {{book.author}}</span>\n\t\t</li>\n\t</ul>\n\t"
         }), 
         __metadata('design:paramtypes', [])
     ], AppComponent);

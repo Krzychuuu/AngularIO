@@ -16,8 +16,21 @@ body, input[text], button {
   color: #888; 
   font-family: Cambria, Georgia; 
 }
-
-/* 
- * See https://github.com/angular/angular.io/blob/master/public/docs/_examples/styles.css
- * for the full set of master styles used by the documentation samples
- */
+.selected {
+	border: 1px red dashed;
+}
+.book-list {
+	list-style-type: none;
+}
+.book-list li {
+    position: relative;
+    font-family: verdana;
+    color: black;
+    left: 0;
+    background-color: #ff8000;
+    margin: 3px;
+    padding: 3px;
+    height: 20px;
+    border-radius: 4px;
+    width: 400px;
+  }

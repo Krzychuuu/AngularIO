@@ -12,12 +12,19 @@ var core_1 = require('@angular/core');
 var SortByNamePipe = (function () {
     function SortByNamePipe() {
     }
-    SortByNamePipe.prototype.transform = function (items, args) {
-        if (!items || !items.length) {
-            return;
-        }
+    /*transform(items: any[], args: any[]): any {
+        if (!items || !items.length) { return; }
         // filter items array, items which match and return true will be kept, false will be filtered out
-        return items.filter(function (item) { return item.author.indexOf(args[0].author) !== -1; });
+        return items.filter(item => item.author.indexOf(args[0].author) !== -1);
+    }*/
+    SortByNamePipe.prototype.transform = function (value, _a) {
+        var queryString = _a[0];
+        if (value == null) {
+            return null;
+        }
+        console.log('transform');
+        return value.filter(function (book) { return new RegExp(queryString).test(book.title); });
+        // return value;
     };
     SortByNamePipe = __decorate([
         core_1.Pipe({

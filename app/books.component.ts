@@ -8,16 +8,17 @@ import { SortByNamePipe } from './pipe';
 
 	template: `
 	<h2>Full list of avaible books:</h2>
-	<label>Search by author:  </label><input placeholder="search" #searchfield id="searchfield" type="text" value=""/>
+	<label>Search by author:  </label><input type='text' [(ngModel)]="filterValue" value="Homer">
 	<ul class="book-list">
-		<li *ngFor="let book of books | sortByName:searchfield.value">
-			<span class="book-list-element"><b>"{{book.title}}"</b>, by: {{book.author}}</span>
+		<li *ngFor="let book of books; let i=index">
+			<span class="book-list-element">{{i + 1}} : <b>"{{book.title}}"</b>, by: {{book.author}}</span>
 		</li>
 	</ul>
 	<hr>
 	`,
 	pipes: [SortByNamePipe]
 })
+/*<li *ngFor="let book of books | sortByName:filterValue; let i=index">*/
 
 export class BooksComponent implements OnInit {
 	books: Book[];

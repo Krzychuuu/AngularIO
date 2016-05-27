@@ -14,6 +14,7 @@ var books_component_1 = require('./books.component');
 var edit_book_component_1 = require('./edit-book.component');
 var router_deprecated_1 = require('@angular/router-deprecated');
 var welcome_page_component_1 = require('./welcome-page.component');
+var contact_component_1 = require('./contact.component');
 var AppComponent = (function () {
     function AppComponent() {
         this.title = 'Online library book list';
@@ -21,7 +22,7 @@ var AppComponent = (function () {
     AppComponent = __decorate([
         core_1.Component({
             selector: 'my-app',
-            template: "\n  <h1>{{title}}</h1>\n  <nav>\n  <a [routerLink]=\"['WelcomePage']\">Home</a>\n  <a [routerLink]=\"['Books']\">Book list</a>\n  <a [routerLink]=\"['EditBook']\">Edit book</a>\n  </nav>\n  <hr>\n  <router-outlet></router-outlet>\n  ",
+            template: "\n  <h1>{{title}}</h1>\n  <nav>\n  <a [routerLink]=\"['WelcomePage']\">Home</a>\n  <a [routerLink]=\"['Books']\">Book list</a>\n  <a [routerLink]=\"['EditBook']\">Edit book</a>\n  <a [routerLink]=\"['Contact']\">Contact</a>\n  </nav>\n  <hr>\n  <router-outlet></router-outlet>\n  ",
             directives: [router_deprecated_1.ROUTER_DIRECTIVES, welcome_page_component_1.WelcomePageComponent],
             providers: [
                 router_deprecated_1.ROUTER_PROVIDERS,
@@ -43,6 +44,11 @@ var AppComponent = (function () {
                 path: '/edit-book',
                 name: 'EditBook',
                 component: edit_book_component_1.EditBookComponent
+            },
+            {
+                path: '/contact',
+                name: 'Contact',
+                component: contact_component_1.ContactComponent
             }]), 
         __metadata('design:paramtypes', [])
     ], AppComponent);

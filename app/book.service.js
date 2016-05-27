@@ -9,17 +9,61 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
-var mock_books_1 = require('./mock-books');
+var http_1 = require('@angular/http');
+require('rxjs/add/operator/toPromise');
 var BookService = (function () {
-    function BookService() {
+    function BookService(http) {
+        this.http = http;
+        this.booksUrl = 'app/books';
     }
     BookService.prototype.getBooks = function () {
-        return Promise.resolve(mock_books_1.BOOKS);
+        return this.http.get(this.booksUrl).toPromise().then(function (response) { return response.json().data; }).catch(this.handleError);
     };
-    ;
+    BookService.prototype.getBook = function (title) {
+        return this.getBooks()
+            .then(function (heroes) { return heroes.filter(function (book) { return book.title == title; })[0]; });
+    };
+    BookService.prototype.save = function (book) {
+        if (book.title) {
+            return this.put(book);
+        }
+        return this.post(book);
+    };
+    BookService.prototype.delete = function (book) {
+        var headers = new http_1.Headers();
+        headers.append('Content-Type', 'application/json');
+        var url = this.booksUrl + "/" + book.title;
+        return this.http
+            .delete(url, headers)
+            .toPromise()
+            .catch(this.handleError);
+    };
+    BookService.prototype.post = function (book) {
+        var headers = new http_1.Headers({
+            'Content-Type': 'application/json' });
+        return this.http
+            .post(this.booksUrl, JSON.stringify(book), { headers: headers })
+            .toPromise()
+            .then(function (res) { return res.json().data; })
+            .catch(this.handleError);
+    };
+    BookService.prototype.put = function (book) {
+        var headers = new http_1.Headers();
+        headers.append('Content-Type', 'application/json');
+        var url = this.booksUrl + "/" + book.title;
+        return this.http
+            .put(url, JSON.stringify(book), { headers: headers })
+            .toPromise()
+            .then(function () { return book; })
+            .catch(this.handleError);
+    };
+    BookService.prototype.handleError = function (error) {
+        console.error('An error occurred', error);
+        return Promise.reject(error.message || error);
+    };
     BookService = __decorate([
         core_1.Injectable(), 
-        __metadata('design:paramtypes', [])
+        __metadata('design:paramtypes', [http_1.Http])
     ], BookService);
     return BookService;
 }());

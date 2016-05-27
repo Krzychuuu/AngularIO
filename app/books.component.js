@@ -26,7 +26,7 @@ var BooksComponent = (function () {
     BooksComponent = __decorate([
         core_1.Component({
             selector: 'my-books',
-            template: "\n\t<h2>Full list of avaible books:</h2>\n\t<label>Search by author:  </label><input type='text' [(ngModel)]=\"filterValue\">\n\t<ul class=\"book-list\">\n\t\t<li *ngFor=\"let book of books | async | sortByName:filterValue; let i=index\">\n\t\t\t<span class=\"book-list-element\">{{i + 1}} : <b>\"{{book.title}}\"</b>, by: {{book.author}}</span>\n\t\t</li>\n\t</ul>\n\t<hr>\n\t",
+            template: "\n\t<h2>Full list of avaible books:</h2>\n\t<label>Search by author:  </label><input type='text' [(ngModel)]=\"filterValue\">\n\t<ul class=\"book-list\">\n\t\t<li *ngFor=\"let book of books; let i=index\">\n\t\t\t<span class=\"book-list-element\">{{i + 1}} : <b>\"{{book.title}}\"</b>, by: {{book.author}}</span>\n\t\t</li>\n\t</ul>\n\t<hr>\n\t",
             pipes: [pipe_1.SortByNamePipe]
         }), 
         __metadata('design:paramtypes', [book_service_1.BookService])

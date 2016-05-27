@@ -1,6 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Book } from './book';
 import { BookService } from './book.service'
+import { RouteParams } from '@angular/router-deprecated';
 
 @Component({
 	selector: 'my-book-detail',
@@ -12,6 +13,8 @@ import { BookService } from './book.service'
 		    <input [(ngModel)]="book.title" placeholder="title" required/>
 		    <label>Author: </label>
 		    <input [(ngModel)]="book.author" placeholder="author" required/>
+        <button (click)="goBack()">Back</button>
+        <button (click)="save()">Save</button>
 		</div>
 	</div>
 	`
@@ -29,9 +32,9 @@ export class BookDetailComponent {
   }
   ngOnInit() {
     if (this.routeParams.get('title') !== null) {
-      let id = +this.routeParams.get('title');
+      let title = +this.routeParams.get('title');
       this.navigated = true;
-      this.bookService.getBook(title)
+      this.bookService.getBook('title')
           .then(book => this.book = book);
     } else {
       this.navigated = false;

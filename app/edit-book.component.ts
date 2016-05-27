@@ -15,26 +15,18 @@ import { BookService } from './book.service';
 				<ul class="book-list">
 					<li *ngFor="let book of books" (click)="onSelect(book)"
 						[class.selected]="book === selectedBook">
-						<span class="book-list-element"><b>"{{book.title}}"</b>, by: {{book.author}}</span>
 						<button class="delete-button" (click)="delete(book, $event)">Remove</button>
+						<span class="book-list-element"><b>"{{book.title}}"</b>, by: {{book.author}}</span>
 					</li>
 				</ul>
 				<button (click)="addBook()">New</button>
-				
-				<div *ngIf="selectedHero">
-				  <h2>
-				    {{selectedHero.name | uppercase}} is my hero
-				  </h2>
-				  <button (click)="gotoDetail()">View Details</button>
-				</div>
 
 			</td>
 			<td width="50%">
 				<div *ngIf="addingBook">
-				  <my-book-detail (close)="close($event)"></my-book-detail>
+				<my-book-detail [book]="selectedBook"></my-book-detail> 
 				</div>
-				<my-book-detail [book]="selectedBook"></my-book-detail>
-				<button (click)="save()">Save</button>
+				
 
 			</td> 
 		</tr>

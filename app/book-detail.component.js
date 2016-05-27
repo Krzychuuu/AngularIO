@@ -11,6 +11,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var core_1 = require('@angular/core');
 var book_1 = require('./book');
 var book_service_1 = require('./book.service');
+var router_deprecated_1 = require('@angular/router-deprecated');
 var BookDetailComponent = (function () {
     function BookDetailComponent(bookService, routeParams) {
         this.bookService = bookService;
@@ -21,9 +22,9 @@ var BookDetailComponent = (function () {
     BookDetailComponent.prototype.ngOnInit = function () {
         var _this = this;
         if (this.routeParams.get('title') !== null) {
-            var id = +this.routeParams.get('title');
+            var title = +this.routeParams.get('title');
             this.navigated = true;
-            this.bookService.getBook(title)
+            this.bookService.getBook('title')
                 .then(function (book) { return _this.book = book; });
         }
         else {
@@ -59,9 +60,9 @@ var BookDetailComponent = (function () {
     BookDetailComponent = __decorate([
         core_1.Component({
             selector: 'my-book-detail',
-            template: "\n\t<div *ngIf=\"book\">\n\t\t<h2><b>Fast edition for:</b><br>[{{book.title}}], written by: {{book.author}}</h2>\n\t\t<div>\n\t\t    <label>Title: </label>\n\t\t    <input [(ngModel)]=\"book.title\" placeholder=\"title\" required/>\n\t\t    <label>Author: </label>\n\t\t    <input [(ngModel)]=\"book.author\" placeholder=\"author\" required/>\n\t\t</div>\n\t</div>\n\t"
+            template: "\n\t<div *ngIf=\"book\">\n\t\t<h2><b>Fast edition for:</b><br>[{{book.title}}], written by: {{book.author}}</h2>\n\t\t<div>\n\t\t    <label>Title: </label>\n\t\t    <input [(ngModel)]=\"book.title\" placeholder=\"title\" required/>\n\t\t    <label>Author: </label>\n\t\t    <input [(ngModel)]=\"book.author\" placeholder=\"author\" required/>\n        <button (click)=\"goBack()\">Back</button>\n        <button (click)=\"save()\">Save</button>\n\t\t</div>\n\t</div>\n\t"
         }), 
-        __metadata('design:paramtypes', [book_service_1.BookService, Object])
+        __metadata('design:paramtypes', [book_service_1.BookService, router_deprecated_1.RouteParams])
     ], BookDetailComponent);
     return BookDetailComponent;
 }());

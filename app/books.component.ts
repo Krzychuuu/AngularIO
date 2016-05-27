@@ -11,7 +11,7 @@ import 'rxjs/Rx';
 	<h2>Full list of avaible books:</h2>
 	<label>Search by author:  </label><input type='text' [(ngModel)]="filterValue">
 	<ul class="book-list">
-		<li *ngFor="let book of books | async | sortByName:filterValue; let i=index">
+		<li *ngFor="let book of books; let i=index">
 			<span class="book-list-element">{{i + 1}} : <b>"{{book.title}}"</b>, by: {{book.author}}</span>
 		</li>
 	</ul>

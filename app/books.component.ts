@@ -2,15 +2,16 @@ import { Component, OnInit } from '@angular/core';
 import { Book } from './book';
 import { BookService } from './book.service';
 import { SortByNamePipe } from './pipe';
+import 'rxjs/Rx';
 
 @Component({
 	selector: 'my-books',
 
 	template: `
 	<h2>Full list of avaible books:</h2>
-	<label>Search by author:  </label><input type='text' [(ngModel)]="filterValue" value="Homer">
+	<label>Search by author:  </label><input type='text' [(ngModel)]="filterValue">
 	<ul class="book-list">
-		<li *ngFor="let book of books; let i=index">
+		<li *ngFor="let book of books | async | sortByName:filterValue; let i=index">
 			<span class="book-list-element">{{i + 1}} : <b>"{{book.title}}"</b>, by: {{book.author}}</span>
 		</li>
 	</ul>
@@ -21,6 +22,7 @@ import { SortByNamePipe } from './pipe';
 /*<li *ngFor="let book of books | sortByName:filterValue; let i=index">*/
 
 export class BooksComponent implements OnInit {
+	filterValue: String;
 	books: Book[];
 	constructor(private bookService: BookService) { }
 	getBooks() {

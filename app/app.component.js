@@ -15,6 +15,7 @@ var edit_book_component_1 = require('./edit-book.component');
 var router_deprecated_1 = require('@angular/router-deprecated');
 var welcome_page_component_1 = require('./welcome-page.component');
 var contact_component_1 = require('./contact.component');
+require('rxjs/Rx');
 var AppComponent = (function () {
     function AppComponent() {
         this.title = 'Online library book list';

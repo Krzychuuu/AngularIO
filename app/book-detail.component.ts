@@ -1,5 +1,6 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Book } from './book';
+import { BookService } from './book.service'
 
 @Component({
 	selector: 'my-book-detail',
@@ -17,6 +18,38 @@ import { Book } from './book';
 })
 
 export class BookDetailComponent {
-  @Input() 
-  book: Book;
+  @Input() book: Book;
+  @Output() close = new EventEmitter();
+  error: any;
+  navigated = false;
+
+  constructor(
+    private bookService: BookService,
+    private routeParams: RouteParams) {
+  }
+  ngOnInit() {
+    if (this.routeParams.get('title') !== null) {
+      let id = +this.routeParams.get('title');
+      this.navigated = true;
+      this.bookService.getBook(title)
+          .then(book => this.book = book);
+    } else {
+      this.navigated = false;
+      this.book = new Book();
+    }
+  }
+  save() {
+    this.bookService
+        .save(this.book)
+        .then(book => {
+          this.book = book;
+          this.goBack(book);
+        })
+        .catch(error => this.error = error); // TODO: Display error message
+  }
+  goBack(savedBook: Book = null) {
+    this.close.emit(savedBook);
+    if (this.navigated) { window.history.back(); }
+  }
+
 }

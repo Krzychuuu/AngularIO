@@ -5,6 +5,7 @@ import { EditBookComponent } from './edit-book.component';
 import { RouteConfig, ROUTER_DIRECTIVES, ROUTER_PROVIDERS } from '@angular/router-deprecated';
 import { WelcomePageComponent } from './welcome-page.component';
 import { ContactComponent } from './contact.component';
+import 'rxjs/Rx';
 
 
 @Component({

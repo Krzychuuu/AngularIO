@@ -10,19 +10,58 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var core_1 = require('@angular/core');
 var book_1 = require('./book');
+var book_service_1 = require('./book.service');
 var BookDetailComponent = (function () {
-    function BookDetailComponent() {
+    function BookDetailComponent(bookService, routeParams) {
+        this.bookService = bookService;
+        this.routeParams = routeParams;
+        this.close = new core_1.EventEmitter();
+        this.navigated = false;
     }
+    BookDetailComponent.prototype.ngOnInit = function () {
+        var _this = this;
+        if (this.routeParams.get('title') !== null) {
+            var id = +this.routeParams.get('title');
+            this.navigated = true;
+            this.bookService.getBook(title)
+                .then(function (book) { return _this.book = book; });
+        }
+        else {
+            this.navigated = false;
+            this.book = new book_1.Book();
+        }
+    };
+    BookDetailComponent.prototype.save = function () {
+        var _this = this;
+        this.bookService
+            .save(this.book)
+            .then(function (book) {
+            _this.book = book;
+            _this.goBack(book);
+        })
+            .catch(function (error) { return _this.error = error; }); // TODO: Display error message
+    };
+    BookDetailComponent.prototype.goBack = function (savedBook) {
+        if (savedBook === void 0) { savedBook = null; }
+        this.close.emit(savedBook);
+        if (this.navigated) {
+            window.history.back();
+        }
+    };
     __decorate([
         core_1.Input(), 
         __metadata('design:type', book_1.Book)
     ], BookDetailComponent.prototype, "book", void 0);
+    __decorate([
+        core_1.Output(), 
+        __metadata('design:type', Object)
+    ], BookDetailComponent.prototype, "close", void 0);
     BookDetailComponent = __decorate([
         core_1.Component({
             selector: 'my-book-detail',
             template: "\n\t<div *ngIf=\"book\">\n\t\t<h2><b>Fast edition for:</b><br>[{{book.title}}], written by: {{book.author}}</h2>\n\t\t<div>\n\t\t    <label>Title: </label>\n\t\t    <input [(ngModel)]=\"book.title\" placeholder=\"title\" required/>\n\t\t    <label>Author: </label>\n\t\t    <input [(ngModel)]=\"book.author\" placeholder=\"author\" required/>\n\t\t</div>\n\t</div>\n\t"
         }), 
-        __metadata('design:paramtypes', [])
+        __metadata('design:paramtypes', [book_service_1.BookService, Object])
     ], BookDetailComponent);
     return BookDetailComponent;
 }());

@@ -10,6 +10,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var core_1 = require('@angular/core');
 var book_service_1 = require('./book.service');
+var pipe_1 = require('./pipe');
 var BooksComponent = (function () {
     function BooksComponent(bookService) {
         this.bookService = bookService;
@@ -24,7 +25,8 @@ var BooksComponent = (function () {
     BooksComponent = __decorate([
         core_1.Component({
             selector: 'my-books',
-            template: "\n\t<h2>Full list of avaible books:</h2>\n\t<ul class=\"book-list\">\n\t\t<li *ngFor=\"let book of books\">\n\t\t\t<span class=\"book-list-element\"><b>\"{{book.title}}\"</b>, by: {{book.author}}</span>\n\t\t</li>\n\t</ul>\n\t<hr>\n\t"
+            template: "\n\t<h2>Full list of avaible books:</h2>\n\t<label>Search by author:  </label><input placeholder=\"search\" #searchfield id=\"searchfield\" type=\"text\" value=\"\"/>\n\t<ul class=\"book-list\">\n\t\t<li *ngFor=\"let book of books | sortByName:searchfield.value\">\n\t\t\t<span class=\"book-list-element\"><b>\"{{book.title}}\"</b>, by: {{book.author}}</span>\n\t\t</li>\n\t</ul>\n\t<hr>\n\t",
+            pipes: [pipe_1.SortByNamePipe]
         }), 
         __metadata('design:paramtypes', [book_service_1.BookService])
     ], BooksComponent);

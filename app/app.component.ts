@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { BookService } from './book.service';
 import { BooksComponent } from './books.component';
+import { RouteConfig, ROUTER_DIRECTIVES, ROUTER_PROVIDERS } from '@angular/router-deprecated';
+import { WelcomePageComponent } from './welcome-page.component';
 
 
 @Component({
@@ -8,14 +10,34 @@ import { BooksComponent } from './books.component';
 
   template: `
   <h1>{{title}}</h1>
-  <my-books></my-books>
+  <nav>
+  <a [routerLink]="['WelcomePage']">Home</a>
+  <a [routerLink]="['Books']">Books</a>
+  </nav>
+  <router-outlet></router-outlet>
   `,
-  
-  directives: [BooksComponent],
+
+  directives: [ROUTER_DIRECTIVES, WelcomePageComponent],
   providers: [
-    BookService
+     ROUTER_PROVIDERS,
+     BookService
   ]
 })
+
+
+@RouteConfig([{
+  path: '/books',
+  name: 'Books',
+  component: BooksComponent
+},
+{
+  path: '/welcome-page',
+  name: 'WelcomePage',
+  component: WelcomePageComponent,
+  useAsDefault: true
+}])
+
 export class AppComponent {
   title = 'Online library book list';
 }
+

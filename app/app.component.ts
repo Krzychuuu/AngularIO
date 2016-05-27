@@ -1,7 +1,9 @@
 import { Component } from '@angular/core';
+import { Book } from './book';
+import { BookDetailComponent } from './book-detail.component';
 
 @Component({
-  selector: 'my-app',
+	selector: 'my-app',
 
 	template: `
 	<h1>{{title}}</h1>
@@ -13,30 +15,17 @@ import { Component } from '@angular/core';
 		</li>
 	</ul>
 	<hr>
-	<div *ngIf="selectedBook">
-		<h2><b>Fast edition for:</b><br>[{{selectedBook.title}}], written by: {{selectedBook.author}}</h2>
-		<div>
-		    <label>Title: </label>
-		    <input [(ngModel)]="selectedBook.title" placeholder="title"/>
-		    <label>Author: </label>
-		    <input [(ngModel)]="selectedBook.author" placeholder="author"/>
-		</div>
-	</div>
-
-	`
+	<my-book-detail [book]="selectedBook"></my-book-detail>
+	`,
+	directives: [BookDetailComponent]
 })
 
 export class AppComponent {
-	title = 'Online library book list',
+	title = 'Online library book list';
 	public books = BOOKS;
 	selectedBook: Book;
 	onSelect(book: Book) { this.selectedBook = book; }
 
-}
-
-export class Book {
-	name: string;
-	author: string;
 }
 
 var BOOKS: Book[] = [

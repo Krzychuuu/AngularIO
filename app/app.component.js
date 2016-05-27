@@ -9,6 +9,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
+var book_detail_component_1 = require('./book-detail.component');
 var AppComponent = (function () {
     function AppComponent() {
         this.title = 'Online library book list';
@@ -18,19 +19,14 @@ var AppComponent = (function () {
     AppComponent = __decorate([
         core_1.Component({
             selector: 'my-app',
-            template: "\n\t<h1>{{title}}</h1>\n\t<h2>Book List:</h2>\n\t<ul class=\"book-list\">\n\t\t<li *ngFor=\"let book of books\" (click)=\"onSelect(book)\"\n\t\t\t[class.selected]=\"book === selectedBook\">\n\t\t\t<span class=\"book-list-element\"><b>\"{{book.title}}\"</b>, by: {{book.author}}</span>\n\t\t</li>\n\t</ul>\n\t<hr>\n\t<div *ngIf=\"selectedBook\">\n\t\t<h2><b>Fast edition for:</b><br>[{{selectedBook.title}}], written by: {{selectedBook.author}}</h2>\n\t\t<div>\n\t\t    <label>Title: </label>\n\t\t    <input [(ngModel)]=\"selectedBook.title\" placeholder=\"title\"/>\n\t\t    <label>Author: </label>\n\t\t    <input [(ngModel)]=\"selectedBook.author\" placeholder=\"author\"/>\n\t\t</div>\n\t</div>\n\n\t"
+            template: "\n\t<h1>{{title}}</h1>\n\t<h2>Book List:</h2>\n\t<ul class=\"book-list\">\n\t\t<li *ngFor=\"let book of books\" (click)=\"onSelect(book)\"\n\t\t\t[class.selected]=\"book === selectedBook\">\n\t\t\t<span class=\"book-list-element\"><b>\"{{book.title}}\"</b>, by: {{book.author}}</span>\n\t\t</li>\n\t</ul>\n\t<hr>\n\t<my-book-detail [book]=\"selectedBook\"></my-book-detail>\n\t",
+            directives: [book_detail_component_1.BookDetailComponent]
         }), 
         __metadata('design:paramtypes', [])
     ], AppComponent);
     return AppComponent;
 }());
 exports.AppComponent = AppComponent;
-var Book = (function () {
-    function Book() {
-    }
-    return Book;
-}());
-exports.Book = Book;
 var BOOKS = [
     { "title": "Romeo and Juliet", "author": "Shakespear" },
     { "title": "Odysey", "author": "Homer" },

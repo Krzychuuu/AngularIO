@@ -1,6 +1,6 @@
 import { Book } from './book';
 
-var BOOKS: Book[] = [
+export var BOOKS: Book[] = [
 
 	{ "title": "Romeo and Juliet", "author": "Shakespear" },
 	{ "title": "Odysey", "author": "Homer" },

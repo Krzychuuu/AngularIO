@@ -31,7 +31,7 @@ var AppComponent = (function () {
             directives: [book_detail_component_1.BookDetailComponent],
             providers: [book_service_1.BookService]
         }), 
-        __metadata('design:paramtypes', [Object])
+        __metadata('design:paramtypes', [book_service_1.BookService])
     ], AppComponent);
     return AppComponent;
 }());

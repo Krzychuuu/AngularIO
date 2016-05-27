@@ -1,3 +1,4 @@
+/// <reference path="../typings/browser.d.ts" />
 "use strict";
 var platform_browser_dynamic_1 = require('@angular/platform-browser-dynamic');
 var app_component_1 = require('./app.component');

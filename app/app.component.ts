@@ -22,10 +22,9 @@ import { BookDetailComponent } from './book-detail.component';
 
 export class AppComponent {
 	title = 'Online library book list';
-	public books = BOOKS;
+	books = BOOKS;
 	selectedBook: Book;
 	onSelect(book: Book) { this.selectedBook = book; }
-
 }
 
 var BOOKS: Book[] = [

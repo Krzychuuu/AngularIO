@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { Book } from './book';
 import { BookDetailComponent } from './book-detail.component';
+import { BookService } from './book.service';
+import { OnInit } from '@angular/core';
 
 @Component({
 	selector: 'my-app',
@@ -17,18 +19,22 @@ import { BookDetailComponent } from './book-detail.component';
 	<hr>
 	<my-book-detail [book]="selectedBook"></my-book-detail>
 	`,
-	directives: [BookDetailComponent]
+	directives: [BookDetailComponent],
+	providers: [BookService]
 })
 
-export class AppComponent {
+export class AppComponent implements OnInit {
 	title = 'Online library book list';
-	books = BOOKS;
+	books: Book[];
 	selectedBook: Book;
+	constructor(private bookService: bookService) { }
+	getBooks() {
+		this.bookService.getBooks().then(books => this.books = books);
+	}
+	ngOnInit() {
+		this.getBooks();
+	}
 	onSelect(book: Book) { this.selectedBook = book; }
 }
 
-var BOOKS: Book[] = [
-	{ "title": "Romeo and Juliet", "author": "Shakespear" },
-	{ "title": "Odysey", "author": "Homer" },
-	{ "title": "Cooking book", "author": "Gordon Ramsay" }
-];
+

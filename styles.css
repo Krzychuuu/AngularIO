@@ -33,4 +33,24 @@ body, input[text], button {
     height: 20px;
     border-radius: 4px;
     width: 400px;
-  }
+}
+nav a {
+  padding: 5px;
+  font-family: tahoma;
+  font-weight: bold;
+  color: white;
+  text-decoration: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: #808080;
+}
+nav a:visited, a:link {
+  color: yellow;
+}
+nav a:hover {
+  color: blue;
+}
+nav a.router-link-active {
+  color: green;
+  background-color: #99ff99;
+}

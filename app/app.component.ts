@@ -1,39 +1,21 @@
-import { Component, OnInit } from '@angular/core';
-import { Book } from './book';
-import { BookDetailComponent } from './book-detail.component';
+import { Component } from '@angular/core';
 import { BookService } from './book.service';
+import { BooksComponent } from './books.component';
+
 
 @Component({
-	selector: 'my-app',
+  selector: 'my-app',
 
-	template: `
-	<h1>{{title}}</h1>
-	<h2>Book List:</h2>
-	<ul class="book-list">
-		<li *ngFor="let book of books" (click)="onSelect(book)"
-			[class.selected]="book === selectedBook">
-			<span class="book-list-element"><b>"{{book.title}}"</b>, by: {{book.author}}</span>
-		</li>
-	</ul>
-	<hr>
-	<my-book-detail [book]="selectedBook"></my-book-detail>
-	`,
-	directives: [BookDetailComponent],
-	providers: [BookService]
+  template: `
+  <h1>{{title}}</h1>
+  <my-books></my-books>
+  `,
+  
+  directives: [BooksComponent],
+  providers: [
+    BookService
+  ]
 })
-
-export class AppComponent implements OnInit {
-	title = 'Online library book list';
-	books: Book[];
-	selectedBook: Book;
-	constructor(private bookService: BookService) { }
-	getBooks() {
-		this.bookService.getBooks().then(books => this.books = books);
-	}
-	ngOnInit() {
-		this.getBooks();
-	}
-	onSelect(book: Book) { this.selectedBook = book; }
+export class AppComponent {
+  title = 'Online library book list';
 }
-
-

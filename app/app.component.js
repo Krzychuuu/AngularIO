@@ -9,29 +9,22 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
-var book_detail_component_1 = require('./book-detail.component');
 var book_service_1 = require('./book.service');
+var books_component_1 = require('./books.component');
 var AppComponent = (function () {
-    function AppComponent(bookService) {
-        this.bookService = bookService;
+    function AppComponent() {
         this.title = 'Online library book list';
     }
-    AppComponent.prototype.getBooks = function () {
-        var _this = this;
-        this.bookService.getBooks().then(function (books) { return _this.books = books; });
-    };
-    AppComponent.prototype.ngOnInit = function () {
-        this.getBooks();
-    };
-    AppComponent.prototype.onSelect = function (book) { this.selectedBook = book; };
     AppComponent = __decorate([
         core_1.Component({
             selector: 'my-app',
-            template: "\n\t<h1>{{title}}</h1>\n\t<h2>Book List:</h2>\n\t<ul class=\"book-list\">\n\t\t<li *ngFor=\"let book of books\" (click)=\"onSelect(book)\"\n\t\t\t[class.selected]=\"book === selectedBook\">\n\t\t\t<span class=\"book-list-element\"><b>\"{{book.title}}\"</b>, by: {{book.author}}</span>\n\t\t</li>\n\t</ul>\n\t<hr>\n\t<my-book-detail [book]=\"selectedBook\"></my-book-detail>\n\t",
-            directives: [book_detail_component_1.BookDetailComponent],
-            providers: [book_service_1.BookService]
+            template: "\n  <h1>{{title}}</h1>\n  <my-books></my-books>\n  ",
+            directives: [books_component_1.BooksComponent],
+            providers: [
+                book_service_1.BookService
+            ]
         }), 
-        __metadata('design:paramtypes', [book_service_1.BookService])
+        __metadata('design:paramtypes', [])
     ], AppComponent);
     return AppComponent;
 }());

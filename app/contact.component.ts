@@ -3,11 +3,11 @@ import { Component } from '@angular/core';
 @Component({
   selector: 'contact',
   template:`
-	<form action="MAILTO:someone@example.com" method="post" enctype="text/plain">
+	<form #Form="ngForm" action="MAILTO:someone@example.com" method="post" enctype="text/plain">
 	Name:<br>
-	<input type="text" name="name" value="your name"><br>
+	<input type="text" class="form-control" required ngControl="name"><br>
 	E-mail:<br>
-	<input type="text" name="mail" value="your email"><br>
+	<input type="text" class="form-control" required ngControl="mail"><br>
 	Comment:<br>
 	<input type="text" name="comment" value="your comment" size="50"><br><br>
 	<input type="submit" value="Send">

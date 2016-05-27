@@ -15,6 +15,7 @@ import { WelcomePageComponent } from './welcome-page.component';
   <a [routerLink]="['WelcomePage']">Home</a>
   <a [routerLink]="['Books']">Book list</a>
   <a [routerLink]="['EditBook']">Edit book</a>
+  <a [routerLink]="['Contact']">Contact</a>
   </nav>
   <hr>
   <router-outlet></router-outlet>
@@ -43,6 +44,11 @@ import { WelcomePageComponent } from './welcome-page.component';
   path: '/edit-book',
   name: 'EditBook',
   component: EditBookComponent
+},
+{
+  path: '/contact',
+  name: 'Contact',
+  component: ContactComponent
 }])
 
 export class AppComponent {

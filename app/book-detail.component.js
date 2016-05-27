@@ -60,7 +60,7 @@ var BookDetailComponent = (function () {
     BookDetailComponent = __decorate([
         core_1.Component({
             selector: 'my-book-detail',
-            template: "\n\t<div *ngIf=\"book\">\n\t\t<h2><b>Fast edition for:</b><br>[{{book.title}}], written by: {{book.author}}</h2>\n\t\t<div>\n\t\t    <label>Title: </label>\n\t\t    <input [(ngModel)]=\"book.title\" placeholder=\"title\" required/>\n\t\t    <label>Author: </label>\n\t\t    <input [(ngModel)]=\"book.author\" placeholder=\"author\" required/>\n        <button (click)=\"goBack()\">Back</button>\n        <button (click)=\"save()\">Save</button>\n\t\t</div>\n\t</div>\n\t"
+            template: "\n\t<div *ngIf=\"book\">\n\t\t<h2><b>Fast edition for:</b><br>[{{book.title}}], written by: {{book.author}}</h2>\n\t\t<div>\n\t\t    <label>Title: </label>\n\t\t    <input [(ngModel)]=\"book.title\" placeholder=\"title\" required/>\n\t\t    <label>Author: </label>\n\t\t    <input [(ngModel)]=\"book.author\" placeholder=\"author\" required/>\n        <br>\n        <button (click)=\"save()\">Add (only if new book)</button>\n\t\t</div>\n\t</div>\n\t"
         }), 
         __metadata('design:paramtypes', [book_service_1.BookService, router_deprecated_1.RouteParams])
     ], BookDetailComponent);

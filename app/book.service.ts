@@ -13,7 +13,7 @@ export class BookService {
   	}
   	getBook(title: String) {
     return this.getBooks()
-               .then(heroes => heroes.filter(book => book.title == title)[0]);
+               .then(books => books.filter(book => book.title == title)[0]);
   }
   save(book: Book): Promise<Book>  {
     if (book.title) {

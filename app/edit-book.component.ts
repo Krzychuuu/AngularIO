@@ -25,8 +25,7 @@ import { BookService } from './book.service';
 			<td width="50%">
 				<div *ngIf="addingBook">
 				<my-book-detail [book]="selectedBook"></my-book-detail> 
-				</div>
-				
+				</div>			
 
 			</td> 
 		</tr>
@@ -67,7 +66,10 @@ export class EditBookComponent implements OnInit {
 		    })
 		    .catch(error => this.error = error);
 	}
-	onSelect(book: Book) { this.selectedBook = book; }
+	onSelect(book: Book) { 
+		this.selectedBook = book;
+//		addingBook = true;
+	}
 }
 
 

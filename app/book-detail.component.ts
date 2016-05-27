@@ -13,8 +13,8 @@ import { RouteParams } from '@angular/router-deprecated';
 		    <input [(ngModel)]="book.title" placeholder="title" required/>
 		    <label>Author: </label>
 		    <input [(ngModel)]="book.author" placeholder="author" required/>
-        <button (click)="goBack()">Back</button>
-        <button (click)="save()">Save</button>
+        <br>
+        <button (click)="save()">Add (only if new book)</button>
 		</div>
 	</div>
 	`

@@ -11,6 +11,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var core_1 = require('@angular/core');
 var book_service_1 = require('./book.service');
 var books_component_1 = require('./books.component');
+var edit_book_component_1 = require('./edit-book.component');
 var router_deprecated_1 = require('@angular/router-deprecated');
 var welcome_page_component_1 = require('./welcome-page.component');
 var AppComponent = (function () {
@@ -20,7 +21,7 @@ var AppComponent = (function () {
     AppComponent = __decorate([
         core_1.Component({
             selector: 'my-app',
-            template: "\n  <h1>{{title}}</h1>\n  <nav>\n  <a [routerLink]=\"['WelcomePage']\">Home</a>\n  <a [routerLink]=\"['Books']\">Books</a>\n  </nav>\n  <router-outlet></router-outlet>\n  ",
+            template: "\n  <h1>{{title}}</h1>\n  <nav>\n  <a [routerLink]=\"['WelcomePage']\">Home</a>\n  <a [routerLink]=\"['Books']\">Book list</a>\n  <a [routerLink]=\"['EditBook']\">Edit book</a>\n  </nav>\n  <hr>\n  <router-outlet></router-outlet>\n  ",
             directives: [router_deprecated_1.ROUTER_DIRECTIVES, welcome_page_component_1.WelcomePageComponent],
             providers: [
                 router_deprecated_1.ROUTER_PROVIDERS,
@@ -37,6 +38,11 @@ var AppComponent = (function () {
                 name: 'WelcomePage',
                 component: welcome_page_component_1.WelcomePageComponent,
                 useAsDefault: true
+            },
+            {
+                path: '/edit-book',
+                name: 'EditBook',
+                component: edit_book_component_1.EditBookComponent
             }]), 
         __metadata('design:paramtypes', [])
     ], AppComponent);

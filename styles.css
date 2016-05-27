@@ -43,6 +43,7 @@ nav a {
   display: inline-block;
   border-radius: 4px;
   background-color: #808080;
+  margin-left: 5px;
 }
 nav a:visited, a:link {
   color: yellow;
@@ -53,4 +54,13 @@ nav a:hover {
 nav a.router-link-active {
   color: green;
   background-color: #99ff99;
+}
+.edit-view-table {
+  border: 0px;
+  padding: 0px;
+  margin: 0px;
+  width: 100%;
+}
+.edit-view-table tr td:first-child {
+  border-right: 3px black solid;
 }

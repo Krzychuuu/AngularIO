@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { BookService } from './book.service';
 import { BooksComponent } from './books.component';
+import { EditBookComponent } from './edit-book.component';
 import { RouteConfig, ROUTER_DIRECTIVES, ROUTER_PROVIDERS } from '@angular/router-deprecated';
 import { WelcomePageComponent } from './welcome-page.component';
 
@@ -12,8 +13,10 @@ import { WelcomePageComponent } from './welcome-page.component';
   <h1>{{title}}</h1>
   <nav>
   <a [routerLink]="['WelcomePage']">Home</a>
-  <a [routerLink]="['Books']">Books</a>
+  <a [routerLink]="['Books']">Book list</a>
+  <a [routerLink]="['EditBook']">Edit book</a>
   </nav>
+  <hr>
   <router-outlet></router-outlet>
   `,
 
@@ -35,6 +38,11 @@ import { WelcomePageComponent } from './welcome-page.component';
   name: 'WelcomePage',
   component: WelcomePageComponent,
   useAsDefault: true
+},
+{
+  path: '/edit-book',
+  name: 'EditBook',
+  component: EditBookComponent
 }])
 
 export class AppComponent {

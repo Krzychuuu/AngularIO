@@ -26,7 +26,8 @@ import { BookService } from './book.service';
 				<div *ngIf="addingBook">
 					<h2><b>"Fill new book's info":</b></h2>
 					<my-book-detail [book]="selectedBook"></my-book-detail>
-					<button (click)="save()">Add (only if new book)</button>
+					<br>
+					<button (click)="save()">CONFIRM</button>
 				</div>
 				<div *ngIf="edittingBook">
 					<h2><b>Fast edition for:</b></h2>

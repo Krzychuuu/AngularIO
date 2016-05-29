@@ -28,15 +28,17 @@ export class AddDetailComponent {
 
   constructor(
     private bookService: BookService,
-    private routeParams: RouteParams) {
+    private routeParams: RouteParams,
+    private pubSubService:PubSubService) {
   }
   save() {
     this.bookService
         .save(this.book)
         .then(book => {
           this.book = book;
-          getBooks();
         })
         .catch(error => this.error = error); // TODO: Display error message
+        console.log("gowno nie dziala");
+        this.close.emit("testujemy");
   }
 }

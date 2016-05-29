@@ -25,16 +25,9 @@ var BookDetailComponent = (function () {
             .save(this.book)
             .then(function (book) {
             _this.book = book;
-            getBooks();
+            _this.close.emit(null);
         })
             .catch(function (error) { return _this.error = error; }); // TODO: Display error message
-    };
-    BookDetailComponent.prototype.goBack = function (savedBook) {
-        if (savedBook === void 0) { savedBook = null; }
-        this.close.emit(savedBook);
-        if (this.navigated) {
-            window.history.back();
-        }
     };
     __decorate([
         core_1.Input(), 
@@ -47,7 +40,7 @@ var BookDetailComponent = (function () {
     BookDetailComponent = __decorate([
         core_1.Component({
             selector: 'my-book-detail',
-            template: "\n\t<div *ngIf=\"book\">\n\t\t<h2>[{{book.title}}], written by: {{book.author}}</h2>\n\t\t<div>\n\t\t    <label>Title: </label>\n\t\t    <input [(ngModel)]=\"book.title\" placeholder=\"title\" required/>\n\t\t    <label>Author: </label>\n\t\t    <input [(ngModel)]=\"book.author\" placeholder=\"author\" required/>\n        <br>\n\t\t</div>\n\t</div>\n\n\t"
+            template: "\n\t<div *ngIf=\"book\">\n\t\t<h2>[{{book.title}}], written by: {{book.author}}</h2>\n\t\t<div>\n\t\t    <label>Title: </label>\n\t\t    <input [(ngModel)]=\"book.title\" placeholder=\"title\" required/>\n\t\t    <label>Author: </label>\n\t\t    <input [(ngModel)]=\"book.author\" placeholder=\"author\" required/>\n\t\t</div>\n\t</div>\n\n\t"
         }), 
         __metadata('design:paramtypes', [book_service_1.BookService, router_deprecated_1.RouteParams])
     ], BookDetailComponent);

@@ -13,7 +13,6 @@ import { RouteParams } from '@angular/router-deprecated';
 		    <input [(ngModel)]="book.title" placeholder="title" required/>
 		    <label>Author: </label>
 		    <input [(ngModel)]="book.author" placeholder="author" required/>
-        <br>
 		</div>
 	</div>
 
@@ -35,13 +34,9 @@ export class BookDetailComponent {
         .save(this.book)
         .then(book => {
           this.book = book;
-          getBooks();
+          this.close.emit(null);
         })
         .catch(error => this.error = error); // TODO: Display error message
-  }
-  goBack(savedBook: Book = null) {
-    this.close.emit(savedBook);
-    if (this.navigated) { window.history.back(); }
   }
 
 }

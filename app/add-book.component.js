@@ -13,9 +13,10 @@ var book_1 = require('./book');
 var book_service_1 = require('./book.service');
 var router_deprecated_1 = require('@angular/router-deprecated');
 var AddDetailComponent = (function () {
-    function AddDetailComponent(bookService, routeParams) {
+    function AddDetailComponent(bookService, routeParams, pubSubService) {
         this.bookService = bookService;
         this.routeParams = routeParams;
+        this.pubSubService = pubSubService;
         this.close = new core_1.EventEmitter();
         this.navigated = false;
     }
@@ -25,9 +26,10 @@ var AddDetailComponent = (function () {
             .save(this.book)
             .then(function (book) {
             _this.book = book;
-            getBooks();
         })
             .catch(function (error) { return _this.error = error; }); // TODO: Display error message
+        console.log("gowno nie dziala");
+        this.close.emit("testujemy");
     };
     __decorate([
         core_1.Input(), 
@@ -42,7 +44,7 @@ var AddDetailComponent = (function () {
             selector: 'add-book-detail',
             template: "\n\t<div *ngIf=\"book\">\n    <h2>[{{book.title}}], written by: {{book.author}}</h2>\n    <div>\n        <label>Title: </label>\n        <input [(ngModel)]=\"book.title\" placeholder=\"title\" required/>\n        <label>Author: </label>\n        <input [(ngModel)]=\"book.author\" placeholder=\"author\" required/>\n        <br><button (click)=\"save()\">CONFIRM</button>\n      </div>\n\t</div>\n\n\t"
         }), 
-        __metadata('design:paramtypes', [book_service_1.BookService, router_deprecated_1.RouteParams])
+        __metadata('design:paramtypes', [book_service_1.BookService, router_deprecated_1.RouteParams, Object])
     ], AddDetailComponent);
     return AddDetailComponent;
 }());

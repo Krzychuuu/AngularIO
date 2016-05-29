@@ -11,7 +11,7 @@ export class BookService {
 	getBooks(): Promise<Book[]> {
    	 return this.http.get(this.booksUrl).toPromise().then(response => response.json().data).catch(this.handleError);
   	}
-  	getBook(id: number) {
+  	getBook(id: any) {
     return this.getBooks()
                .then(books => books.filter(book => book.id === id)[0]);
   }

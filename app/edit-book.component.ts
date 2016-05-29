@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Book } from './book';
 import { BookDetailComponent } from './book-detail.component';
 import { BookService } from './book.service';
@@ -21,7 +21,7 @@ import { AddDetailComponent } from './add-book.component';
 					</li>
 				</ul>
 				<button (click)="addBook()">New</button>
-				<button (click)="getBooks()">refresh</button>
+				<button (click)="getBooks()">Refresh list</button>
 
 			</td>
 			<td width="50%">
@@ -43,13 +43,15 @@ import { AddDetailComponent } from './add-book.component';
 })
 
 export class EditBookComponent implements OnInit {
+	@Input() message: String;
 	title = 'Online library book list';
 	books: Book[];
 	selectedBook: Book;
 	addingBook = false;
 	edittingBook = false;
 	error: any;
-	constructor(private bookService: BookService) { }
+	constructor(private bookService: BookService,
+	private pubSubService:PubSubService) { }
 	getBooks() {
 		this.bookService.getBooks().then(books => this.books = books);
 	}
@@ -61,9 +63,10 @@ export class EditBookComponent implements OnInit {
 	    this.addingBook = true;
 	    this.selectedBook = new Book();
 	}
-	close(savedBook: Book) {
-		this.addingBook = false;
-		if (savedBook) { this.getBooks(); }
+	close(message) {
+		console.log("got it");
+		console.log(message)
+		this.getBooks();
 	}
 	delete(book: Book, event: any) {
 		event.stopPropagation();

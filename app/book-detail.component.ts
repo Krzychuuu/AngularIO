@@ -29,23 +29,12 @@ export class BookDetailComponent {
     private bookService: BookService,
     private routeParams: RouteParams) {
   }
-  ngOnInit() {
-    if (this.routeParams.get('title') !== null) {
-      let title = +this.routeParams.get('title');
-      this.navigated = true;
-      this.bookService.getBook('title')
-          .then(book => this.book = book);
-    } else {
-      this.navigated = false;
-      this.book = new Book();
-    }
-  }
   save() {
     this.bookService
         .save(this.book)
         .then(book => {
           this.book = book;
-          this.goBack(book);
+
         })
         .catch(error => this.error = error); // TODO: Display error message
   }

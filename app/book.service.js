@@ -21,7 +21,7 @@ var BookService = (function () {
     };
     BookService.prototype.getBook = function (title) {
         return this.getBooks()
-            .then(function (books) { return books.filter(function (book) { return book.title == title; })[0]; });
+            .then(function (books) { return books.filter(function (book) { return book.title === title; })[0]; });
     };
     BookService.prototype.save = function (book) {
         if (book.title) {

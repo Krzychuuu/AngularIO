@@ -19,26 +19,12 @@ var BookDetailComponent = (function () {
         this.close = new core_1.EventEmitter();
         this.navigated = false;
     }
-    BookDetailComponent.prototype.ngOnInit = function () {
-        var _this = this;
-        if (this.routeParams.get('title') !== null) {
-            var title = +this.routeParams.get('title');
-            this.navigated = true;
-            this.bookService.getBook('title')
-                .then(function (book) { return _this.book = book; });
-        }
-        else {
-            this.navigated = false;
-            this.book = new book_1.Book();
-        }
-    };
     BookDetailComponent.prototype.save = function () {
         var _this = this;
         this.bookService
             .save(this.book)
             .then(function (book) {
             _this.book = book;
-            _this.goBack(book);
         })
             .catch(function (error) { return _this.error = error; }); // TODO: Display error message
     };

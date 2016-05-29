@@ -1,8 +1,8 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { Book } from './books/book';
-import { BookDetailComponent } from './books/book-detail.component';
-import { BookService } from './books/book.service';
-import { AddDetailComponent } from './books/add-book.component';
+import { Book } from './book';
+import { BookDetailComponent } from './book-detail.component';
+import { BookService } from './book.service';
+import { AddDetailComponent } from './add-book.component';
 
 @Component({
 	selector: 'edit-book',
@@ -12,7 +12,6 @@ import { AddDetailComponent } from './books/add-book.component';
 		<table class="edit-view-table">
 		<tr>
 			<td width="50%">
-
 				<ul class="book-list">
 					<li *ngFor="let book of books" (click)="onSelect(book)"
 						[class.selected]="book === selectedBook">
@@ -33,18 +32,16 @@ import { AddDetailComponent } from './books/add-book.component';
 					<h2><b>Fast edition for:</b></h2>
 					<my-book-detail [book]="selectedBook"></my-book-detail> 
 				</div>			
-
 			</td> 
 		</tr>
 		</table>
-	
 	`,
+
 	directives: [BookDetailComponent, AddDetailComponent]
 })
 
 export class EditBookComponent implements OnInit {
 	@Input() message: String;
-	title = 'Online library book list';
 	books: Book[];
 	selectedBook: Book;
 	addingBook = false;
@@ -63,12 +60,9 @@ export class EditBookComponent implements OnInit {
 	    this.selectedBook = new Book();
 	}
 	close(message) {
-		console.log("got it");
-		console.log(message)
 		this.getBooks();
 	}
 	delete(book: Book, event: any) {
-		event.stopPropagation();
 		this.bookService
 		    .delete(book)
 		    .then(res => {

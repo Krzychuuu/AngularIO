@@ -10,51 +10,35 @@ import { HTTP_PROVIDERS } from '@angular/http';
 
 
 @Component({
-  selector: 'my-app',
+    selector: 'my-app',
 
-  template: `
-  <h1>{{title}}</h1>
-  <nav>
-  <a [routerLink]="['WelcomePage']">Home</a>
-  <a [routerLink]="['Books']">Book list</a>
-  <a [routerLink]="['EditBook']">Edit book</a>
-  <a [routerLink]="['Contact']">Contact</a>
-  </nav>
-  <hr>
-  <router-outlet></router-outlet>
-  `,
+    template: `
+    <h1>{{title}}</h1>
+    <nav>
+    <a [routerLink]="['WelcomePage']">Home</a>
+    <a [routerLink]="['Books']">Book list</a>
+    <a [routerLink]="['EditBook']">Edit book</a>
+    <a [routerLink]="['Contact']">Contact</a>
+    </nav>
+    <hr>
+    <router-outlet></router-outlet>
+    `,
 
-  directives: [ROUTER_DIRECTIVES, WelcomePageComponent],
-  providers: [
-     ROUTER_PROVIDERS,
-     BookService
-  ]
+    directives: [ROUTER_DIRECTIVES, WelcomePageComponent],
+    providers: [
+        ROUTER_PROVIDERS,
+        BookService
+    ]
 })
 
-
-@RouteConfig([{
-  path: '/books/books',
-  name: 'Books',
-  component: BooksComponent
-},
-{
-  path: '/welcome-page',
-  name: 'WelcomePage',
-  component: WelcomePageComponent,
-  useAsDefault: true
-},
-{
-  path: '/books/edit-book',
-  name: 'EditBook',
-  component: EditBookComponent
-},
-{
-  path: '/contact',
-  name: 'Contact',
-  component: ContactComponent
-}])
+    @RouteConfig([
+    {        path: '/books',        name: 'Books',        component: BooksComponent    },
+    {        path: '/welcome-page',        name: 'WelcomePage',        component: WelcomePageComponent,
+        useAsDefault: true    },
+    {        path: '/edit-book',        name: 'EditBook',        component: EditBookComponent    },
+    {        path: '/contact',        name: 'Contact',        component: ContactComponent    }
+    ])
 
 export class AppComponent {
-  title = 'Online library book list';
+    title = 'Online library book list';
 }
-

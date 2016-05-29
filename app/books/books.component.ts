@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { Book } from './books/book';
-import { BookService } from './books/book.service';
-import { SortByNamePipe } from './pipes/pipe';
+import { Book } from './book';
+import { BookService } from './book.service';
+import { SortByNamePipe } from '../pipes/pipe';
 import 'rxjs/Rx';
 
 @Component({
@@ -9,7 +9,8 @@ import 'rxjs/Rx';
 
 	template: `
 	<h2>Full list of avaible books:</h2>
-	<label>Search by author:  </label><input type='text' [(ngModel)]="filterValue" value="Homer">
+	<label>Search by author:  </label>
+	<input type='text' [(ngModel)]="filterValue" value="Homer">
 	<ul class="book-list">
 		<li *ngFor="let book of books | sortByName:filterValue; let i=index">
 			<span class="book-list-element">{{i + 1}} : <b>"{{book.title}}"</b>, by: {{book.author}}</span>
@@ -17,9 +18,9 @@ import 'rxjs/Rx';
 	</ul>
 	<hr>
 	`,
+
 	pipes: [SortByNamePipe]
 })
-/*<li *ngFor="let book of books | sortByName:filterValue; let i=index">*/
 
 export class BooksComponent implements OnInit {
 	filterValue: String;

@@ -17,7 +17,6 @@ export class SortByNamePipe {
     if (value==null) {
       return null;
     }
-    console.log(value);
 
     return value.filter((book)=>new RegExp(queryString).test(book.author))
   }

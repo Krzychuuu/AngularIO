@@ -16,6 +16,7 @@ import { RouteParams } from '@angular/router-deprecated';
         <br>
 		</div>
 	</div>
+
 	`
 })
 
@@ -34,7 +35,7 @@ export class BookDetailComponent {
         .save(this.book)
         .then(book => {
           this.book = book;
-
+          this.goBack(book);
         })
         .catch(error => this.error = error); // TODO: Display error message
   }

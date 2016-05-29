@@ -47,7 +47,7 @@ export class EditBookComponent implements OnInit {
 	books: Book[];
 	selectedBook: Book;
 	addingBook = false;
-	edittingBook = true;
+	edittingBook = false;
 	error: any;
 	constructor(private bookService: BookService) { }
 	getBooks() {

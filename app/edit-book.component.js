@@ -16,7 +16,7 @@ var EditBookComponent = (function () {
         this.bookService = bookService;
         this.title = 'Online library book list';
         this.addingBook = false;
-        this.edittingBook = true;
+        this.edittingBook = false;
     }
     EditBookComponent.prototype.getBooks = function () {
         var _this = this;

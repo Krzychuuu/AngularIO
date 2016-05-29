@@ -15,7 +15,7 @@ var ContactComponent = (function () {
     ContactComponent = __decorate([
         core_1.Component({
             selector: 'contact',
-            template: "\n\t<form #Form=\"ngForm\" action=\"MAILTO:someone@example.com\" method=\"post\" enctype=\"text/plain\">\n\tName:<br>\n\t<input type=\"text\" class=\"form-control\" required ngControl=\"name\"><br>\n\tE-mail:<br>\n\t<input type=\"text\" class=\"form-control\" required ngControl=\"mail\"><br>\n\tComment:<br>\n\t<input type=\"text\" name=\"comment\" value=\"your comment\" size=\"50\"><br><br>\n\t<input type=\"submit\" value=\"Send\">\n\t<input type=\"reset\" value=\"Reset\">\n\t</form>\n  "
+            template: "\n\t<form #Form=\"ngForm\" action=\"MAILTO:someone@example.com\" method=\"post\" enctype=\"text/plain\">\n\tName:<br>\n\t<input type=\"text\" class=\"form-control\" required ngControl=\"name\"><br>\n\tE-mail:<br>\n\t<input type=\"text\" class=\"form-control\" required ngControl=\"mail\"><br>\n\tComment:<br>\n\t<input type=\"text\" name=\"comment\" value=\"your comment\" size=\"50\"><br><br>\n\t<input type=\"submit\" value=\"Send\">\n\t</form>\n  "
         }), 
         __metadata('design:paramtypes', [])
     ], ContactComponent);

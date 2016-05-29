@@ -1,5 +1,6 @@
 import {Pipe, PipeTransform} from '@angular/core';
 import 'rxjs/Rx';
+import {Book} from './Book';
 
 @Pipe({
   name: 'sortByName',
@@ -7,19 +8,18 @@ import 'rxjs/Rx';
 })
 
 export class SortByNamePipe {
-    transform(items: any[], args: any[]): any {
-        if (!items || !items.length) { return; }
+    //transform(items: any[], args: any[]): any {
+        //if (!items || !items.length) { return; }
         // filter items array, items which match and return true will be kept, false will be filtered out
-        return items.filter(item => item.author.indexOf(args[0].author) !== -1);
+        // return items.filter(item => item.author.indexOf(args[0].author) !== -1);
     
-    /*transform (value, [queryString]) {
+    transform (value: any[], [queryString]) {
     if (value==null) {
       return null;
     }
     console.log(this.transform);
     console.log(value);
 
-    return value.filter((book)=>new RegExp(queryString).test(book.title))
-    // return value;*/
+    return value.filter((book)=>new RegExp(queryString).test(book.author))
   }
 }

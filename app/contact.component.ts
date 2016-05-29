@@ -11,7 +11,6 @@ import { Component } from '@angular/core';
 	Comment:<br>
 	<input type="text" name="comment" value="your comment" size="50"><br><br>
 	<input type="submit" value="Send">
-	<input type="reset" value="Reset">
 	</form>
   `
 })

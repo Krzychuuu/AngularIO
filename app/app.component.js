@@ -28,7 +28,8 @@ var AppComponent = (function () {
             providers: [
                 router_deprecated_1.ROUTER_PROVIDERS,
                 book_service_1.BookService
-            ]
+            ],
+            pipes: [SortByNamePipe]
         }),
         router_deprecated_1.RouteConfig([{
                 path: '/books',

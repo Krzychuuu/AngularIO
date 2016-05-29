@@ -6,6 +6,8 @@ import { RouteConfig, ROUTER_DIRECTIVES, ROUTER_PROVIDERS } from '@angular/route
 import { WelcomePageComponent } from './welcome-page.component';
 import { ContactComponent } from './contact.component';
 import 'rxjs/Rx';
+import { HTTP_PROVIDERS } from '@angular/http';
+import {Pipe, PipeTransform} from '@angular/core';
 
 
 @Component({
@@ -27,7 +29,8 @@ import 'rxjs/Rx';
   providers: [
      ROUTER_PROVIDERS,
      BookService
-  ]
+  ],
+  pipes: [SortByNamePipe]
 })
 
 

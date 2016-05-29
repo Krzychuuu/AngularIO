@@ -7,14 +7,13 @@ import { RouteParams } from '@angular/router-deprecated';
 	selector: 'my-book-detail',
 	template: `
 	<div *ngIf="book">
-		<h2><b>Fast edition for:</b><br>[{{book.title}}], written by: {{book.author}}</h2>
+		<h2>[{{book.title}}], written by: {{book.author}}</h2>
 		<div>
 		    <label>Title: </label>
 		    <input [(ngModel)]="book.title" placeholder="title" required/>
 		    <label>Author: </label>
 		    <input [(ngModel)]="book.author" placeholder="author" required/>
         <br>
-        <button (click)="save()">Add (only if new book)</button>
 		</div>
 	</div>
 	`

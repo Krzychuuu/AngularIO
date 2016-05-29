@@ -24,7 +24,13 @@ import { BookService } from './book.service';
 			</td>
 			<td width="50%">
 				<div *ngIf="addingBook">
-				<my-book-detail [book]="selectedBook"></my-book-detail> 
+					<h2><b>"Fill new book's info":</b></h2>
+					<my-book-detail [book]="selectedBook"></my-book-detail>
+					<button (click)="save()">Add (only if new book)</button>
+				</div>
+				<div *ngIf="edittingBook">
+					<h2><b>Fast edition for:</b></h2>
+					<my-book-detail [book]="selectedBook"></my-book-detail> 
 				</div>			
 
 			</td> 
@@ -40,6 +46,7 @@ export class EditBookComponent implements OnInit {
 	books: Book[];
 	selectedBook: Book;
 	addingBook = false;
+	edittingBook = true;
 	error: any;
 	constructor(private bookService: BookService) { }
 	getBooks() {
@@ -49,6 +56,7 @@ export class EditBookComponent implements OnInit {
 		this.getBooks();
 	}
 	addBook() {
+		this.edittingBook = false;
 	    this.addingBook = true;
 	    this.selectedBook = null;
 	}
@@ -68,7 +76,8 @@ export class EditBookComponent implements OnInit {
 	}
 	onSelect(book: Book) { 
 		this.selectedBook = book;
-//		addingBook = true;
+		this.addingBook = false;
+		this.edittingBook = true;
 	}
 }
 

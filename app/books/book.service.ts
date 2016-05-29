@@ -1,12 +1,11 @@
 import { Injectable } from '@angular/core';
 import { Headers, Http } from '@angular/http';
 import 'rxjs/add/operator/toPromise';
-import { BOOKS } from './mock-books';
-import { Book } from './book';
+import { Book } from '.books/book';
 
 @Injectable()
 export class BookService {
-	private booksUrl = 'app/books';
+	private booksUrl = 'app/database/books';
 	constructor(private http: Http) { }
 	getBooks(): Promise<Book[]> {
    	 return this.http.get(this.booksUrl).toPromise().then(response => response.json().data).catch(this.handleError);

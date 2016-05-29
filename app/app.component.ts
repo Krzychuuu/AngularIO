@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
-import { BookService } from './book.service';
-import { BooksComponent } from './books.component';
-import { EditBookComponent } from './edit-book.component';
+import { BookService } from './books/book.service';
+import { BooksComponent } from './books/books.component';
+import { EditBookComponent } from './books/edit-book.component';
 import { RouteConfig, ROUTER_DIRECTIVES, ROUTER_PROVIDERS } from '@angular/router-deprecated';
 import { WelcomePageComponent } from './welcome-page.component';
 import { ContactComponent } from './contact.component';
@@ -33,7 +33,7 @@ import { HTTP_PROVIDERS } from '@angular/http';
 
 
 @RouteConfig([{
-  path: '/books',
+  path: '/books/books',
   name: 'Books',
   component: BooksComponent
 },
@@ -44,7 +44,7 @@ import { HTTP_PROVIDERS } from '@angular/http';
   useAsDefault: true
 },
 {
-  path: '/edit-book',
+  path: '/books/edit-book',
   name: 'EditBook',
   component: EditBookComponent
 },

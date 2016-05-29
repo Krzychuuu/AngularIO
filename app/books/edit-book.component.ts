@@ -1,8 +1,8 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { Book } from './book';
-import { BookDetailComponent } from './book-detail.component';
-import { BookService } from './book.service';
-import { AddDetailComponent } from './add-book.component';
+import { Book } from './books/book';
+import { BookDetailComponent } from './books/book-detail.component';
+import { BookService } from './books/book.service';
+import { AddDetailComponent } from './books/add-book.component';
 
 @Component({
 	selector: 'edit-book',
@@ -50,8 +50,7 @@ export class EditBookComponent implements OnInit {
 	addingBook = false;
 	edittingBook = false;
 	error: any;
-	constructor(private bookService: BookService,
-	private pubSubService:PubSubService) { }
+	constructor(private bookService: BookService) { }
 	getBooks() {
 		this.bookService.getBooks().then(books => this.books = books);
 	}

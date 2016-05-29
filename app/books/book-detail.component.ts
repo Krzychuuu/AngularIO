@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { Book } from './book';
-import { BookService } from './book.service'
+import { Book } from './books/book';
+import { BookService } from './books/book.service'
 import { RouteParams } from '@angular/router-deprecated';
 
 @Component({

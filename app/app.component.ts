@@ -7,7 +7,6 @@ import { WelcomePageComponent } from './welcome-page.component';
 import { ContactComponent } from './contact.component';
 import 'rxjs/Rx';
 import { HTTP_PROVIDERS } from '@angular/http';
-import {Pipe, PipeTransform} from '@angular/core';
 
 
 @Component({
@@ -29,8 +28,7 @@ import {Pipe, PipeTransform} from '@angular/core';
   providers: [
      ROUTER_PROVIDERS,
      BookService
-  ],
-  pipes: [SortByNamePipe]
+  ]
 })
 
 

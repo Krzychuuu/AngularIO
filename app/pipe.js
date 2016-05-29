@@ -17,12 +17,10 @@ var SortByNamePipe = (function () {
     //if (!items || !items.length) { return; }
     // filter items array, items which match and return true will be kept, false will be filtered out
     // return items.filter(item => item.author.indexOf(args[0].author) !== -1);
-    SortByNamePipe.prototype.transform = function (value, _a) {
-        var queryString = _a[0];
+    SortByNamePipe.prototype.transform = function (value, queryString) {
         if (value == null) {
             return null;
         }
-        console.log(this.transform);
         console.log(value);
         return value.filter(function (book) { return new RegExp(queryString).test(book.author); });
     };

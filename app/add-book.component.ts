@@ -4,23 +4,23 @@ import { BookService } from './book.service'
 import { RouteParams } from '@angular/router-deprecated';
 
 @Component({
-	selector: 'my-book-detail',
+	selector: 'add-book-detail',
 	template: `
 	<div *ngIf="book">
-		<h2>[{{book.title}}], written by: {{book.author}}</h2>
-		<div>
-		    <label>Title: </label>
-		    <input [(ngModel)]="book.title" placeholder="title" required/>
-		    <label>Author: </label>
-		    <input [(ngModel)]="book.author" placeholder="author" required/>
-        <br>
-		</div>
+    <h2>[{{book.title}}], written by: {{book.author}}</h2>
+    <div>
+        <label>Title: </label>
+        <input [(ngModel)]="book.title" placeholder="title" required/>
+        <label>Author: </label>
+        <input [(ngModel)]="book.author" placeholder="author" required/>
+        <br><button (click)="save()">CONFIRM</button>
+      </div>
 	</div>
 
 	`
 })
 
-export class BookDetailComponent {
+export class AddDetailComponent {
   @Input() book: Book;
   @Output() close = new EventEmitter();
   error: any;
@@ -39,9 +39,4 @@ export class BookDetailComponent {
         })
         .catch(error => this.error = error); // TODO: Display error message
   }
-  goBack(savedBook: Book = null) {
-    this.close.emit(savedBook);
-    if (this.navigated) { window.history.back(); }
-  }
-
 }

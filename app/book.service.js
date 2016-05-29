@@ -19,12 +19,12 @@ var BookService = (function () {
     BookService.prototype.getBooks = function () {
         return this.http.get(this.booksUrl).toPromise().then(function (response) { return response.json().data; }).catch(this.handleError);
     };
-    BookService.prototype.getBook = function (title) {
+    BookService.prototype.getBook = function (id) {
         return this.getBooks()
-            .then(function (books) { return books.filter(function (book) { return book.title === title; })[0]; });
+            .then(function (books) { return books.filter(function (book) { return book.id === id; })[0]; });
     };
     BookService.prototype.save = function (book) {
-        if (book.title) {
+        if (book.id) {
             return this.put(book);
         }
         return this.post(book);
@@ -32,7 +32,7 @@ var BookService = (function () {
     BookService.prototype.delete = function (book) {
         var headers = new http_1.Headers();
         headers.append('Content-Type', 'application/json');
-        var url = this.booksUrl + "/" + book.title;
+        var url = this.booksUrl + "/" + book.id;
         return this.http
             .delete(url, headers)
             .toPromise()
@@ -50,7 +50,7 @@ var BookService = (function () {
     BookService.prototype.put = function (book) {
         var headers = new http_1.Headers();
         headers.append('Content-Type', 'application/json');
-        var url = this.booksUrl + "/" + book.title;
+        var url = this.booksUrl + "/" + book.id;
         return this.http
             .put(url, JSON.stringify(book), { headers: headers })
             .toPromise()

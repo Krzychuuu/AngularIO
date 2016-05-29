@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Book } from './book';
 import { BookDetailComponent } from './book-detail.component';
 import { BookService } from './book.service';
+import { AddDetailComponent } from './add-book.component';
 
 @Component({
 	selector: 'edit-book',
@@ -20,14 +21,13 @@ import { BookService } from './book.service';
 					</li>
 				</ul>
 				<button (click)="addBook()">New</button>
+				<button (click)="getBooks()">refresh</button>
 
 			</td>
 			<td width="50%">
 				<div *ngIf="addingBook">
 					<h2><b>"Fill new book's info":</b></h2>
-					<my-book-detail [book]="selectedBook"></my-book-detail>
-					<br>
-					<button (click)="save()">CONFIRM</button>
+					<add-book-detail [book]="selectedBook"></add-book-detail>
 				</div>
 				<div *ngIf="edittingBook">
 					<h2><b>Fast edition for:</b></h2>
@@ -39,7 +39,7 @@ import { BookService } from './book.service';
 		</table>
 	
 	`,
-	directives: [BookDetailComponent]
+	directives: [BookDetailComponent, AddDetailComponent]
 })
 
 export class EditBookComponent implements OnInit {
@@ -59,7 +59,7 @@ export class EditBookComponent implements OnInit {
 	addBook() {
 		this.edittingBook = false;
 	    this.addingBook = true;
-	    this.selectedBook = null;
+	    this.selectedBook = new Book();
 	}
 	close(savedBook: Book) {
 		this.addingBook = false;

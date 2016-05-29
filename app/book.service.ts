@@ -11,12 +11,12 @@ export class BookService {
 	getBooks(): Promise<Book[]> {
    	 return this.http.get(this.booksUrl).toPromise().then(response => response.json().data).catch(this.handleError);
   	}
-  	getBook(title: String) {
+  	getBook(id: number) {
     return this.getBooks()
-               .then(books => books.filter(book => book.title === title)[0]);
+               .then(books => books.filter(book => book.id === id)[0]);
   }
   save(book: Book): Promise<Book>  {
-    if (book.title) {
+    if (book.id) {
       return this.put(book);
     }
     return this.post(book);
@@ -26,7 +26,7 @@ export class BookService {
     let headers = new Headers();
     headers.append('Content-Type', 'application/json');
 
-    let url = `${this.booksUrl}/${book.title}`;
+    let url = `${this.booksUrl}/${book.id}`;
 
     return this.http
                .delete(url, headers)
@@ -47,7 +47,7 @@ export class BookService {
     let headers = new Headers();
     headers.append('Content-Type', 'application/json');
 
-    let url = `${this.booksUrl}/${book.title}`;
+    let url = `${this.booksUrl}/${book.id}`;
 
     return this.http
                .put(url, JSON.stringify(book), {headers: headers})

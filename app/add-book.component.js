@@ -12,14 +12,14 @@ var core_1 = require('@angular/core');
 var book_1 = require('./book');
 var book_service_1 = require('./book.service');
 var router_deprecated_1 = require('@angular/router-deprecated');
-var BookDetailComponent = (function () {
-    function BookDetailComponent(bookService, routeParams) {
+var AddDetailComponent = (function () {
+    function AddDetailComponent(bookService, routeParams) {
         this.bookService = bookService;
         this.routeParams = routeParams;
         this.close = new core_1.EventEmitter();
         this.navigated = false;
     }
-    BookDetailComponent.prototype.save = function () {
+    AddDetailComponent.prototype.save = function () {
         var _this = this;
         this.bookService
             .save(this.book)
@@ -29,29 +29,22 @@ var BookDetailComponent = (function () {
         })
             .catch(function (error) { return _this.error = error; }); // TODO: Display error message
     };
-    BookDetailComponent.prototype.goBack = function (savedBook) {
-        if (savedBook === void 0) { savedBook = null; }
-        this.close.emit(savedBook);
-        if (this.navigated) {
-            window.history.back();
-        }
-    };
     __decorate([
         core_1.Input(), 
         __metadata('design:type', book_1.Book)
-    ], BookDetailComponent.prototype, "book", void 0);
+    ], AddDetailComponent.prototype, "book", void 0);
     __decorate([
         core_1.Output(), 
         __metadata('design:type', Object)
-    ], BookDetailComponent.prototype, "close", void 0);
-    BookDetailComponent = __decorate([
+    ], AddDetailComponent.prototype, "close", void 0);
+    AddDetailComponent = __decorate([
         core_1.Component({
-            selector: 'my-book-detail',
-            template: "\n\t<div *ngIf=\"book\">\n\t\t<h2>[{{book.title}}], written by: {{book.author}}</h2>\n\t\t<div>\n\t\t    <label>Title: </label>\n\t\t    <input [(ngModel)]=\"book.title\" placeholder=\"title\" required/>\n\t\t    <label>Author: </label>\n\t\t    <input [(ngModel)]=\"book.author\" placeholder=\"author\" required/>\n        <br>\n\t\t</div>\n\t</div>\n\n\t"
+            selector: 'add-book-detail',
+            template: "\n\t<div *ngIf=\"book\">\n    <h2>[{{book.title}}], written by: {{book.author}}</h2>\n    <div>\n        <label>Title: </label>\n        <input [(ngModel)]=\"book.title\" placeholder=\"title\" required/>\n        <label>Author: </label>\n        <input [(ngModel)]=\"book.author\" placeholder=\"author\" required/>\n        <br><button (click)=\"save()\">CONFIRM</button>\n      </div>\n\t</div>\n\n\t"
         }), 
         __metadata('design:paramtypes', [book_service_1.BookService, router_deprecated_1.RouteParams])
-    ], BookDetailComponent);
-    return BookDetailComponent;
+    ], AddDetailComponent);
+    return AddDetailComponent;
 }());
-exports.BookDetailComponent = BookDetailComponent;
-//# sourceMappingURL=book-detail.component.js.map
+exports.AddDetailComponent = AddDetailComponent;
+//# sourceMappingURL=add-book.component.js.map

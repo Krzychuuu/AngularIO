@@ -13,7 +13,9 @@ import { RouteParams } from '@angular/router-deprecated';
 		    <input [(ngModel)]="book.title" placeholder="title" required/>
 		    <label>Author: </label>
 		    <input [(ngModel)]="book.author" placeholder="author" required/>
-		</div>
+		</div><br>
+  <button (click)="goBack()">Cancel</button>
+  <button (click)="save()">Confirm</button>
 	</div>
 
 	`
@@ -34,8 +36,23 @@ export class BookDetailComponent {
         .save(this.book)
         .then(book => {
           this.book = book;
-          this.close.emit(null);
+          this.goBack(book);
         })
         .catch(error => this.error = error);
-
+  }
+  ngOnInit() {
+    if (this.routeParams.get('id') !== null) {
+      let id = +this.routeParams.get('id');
+      this.navigated = true;
+      this.bookService.getBook(id)
+          .then(book => this.book = book);
+    } else {
+      this.navigated = false;
+      this.book = new Book();
+    }
+  }
+  goBack(savedBook: Book = null) {
+    this.close.emit(savedBook);
+    if (this.navigated) { window.history.back(); }
+  }
 }

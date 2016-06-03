@@ -5,12 +5,16 @@ import { Book } from './book';
 
 @Injectable()
 export class BookService {
-	private booksUrl = '../database/books';
-	constructor(private http: Http) { }
-	getBooks(): Promise<Book[]> {
+	
+  private booksUrl = '../database/books';
+	
+  constructor(private http: Http) { }
+	
+  getBooks(): Promise<Book[]> {
     return this.http.get(this.booksUrl).toPromise().then(response => response.json().data).catch(this.handleError);
   }
-	getBook(id: any) {
+	
+  getBook(id: number) {
     return this.getBooks()
                .then(books => books.filter(book => book.id === id)[0]);
   }

@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { BookService } from './books/book.service';
 import { BooksComponent } from './books/books.component';
 import { EditBookComponent } from './books/edit-book.component';
+import { BookDetailComponent } from './books/book-detail.component';
 import { RouteConfig, ROUTER_DIRECTIVES, ROUTER_PROVIDERS } from '@angular/router-deprecated';
 import { WelcomePageComponent } from './welcome-page.component';
 import { ContactComponent } from './contact.component';
@@ -32,11 +33,11 @@ import { HTTP_PROVIDERS } from '@angular/http';
 })
 
     @RouteConfig([
-    {        path: '/books',        name: 'Books',        component: BooksComponent    },
-    {        path: '/welcome-page',        name: 'WelcomePage',        component: WelcomePageComponent,
-        useAsDefault: true    },
-    {        path: '/edit-book',        name: 'EditBook',        component: EditBookComponent    },
-    {        path: '/contact',        name: 'Contact',        component: ContactComponent    }
+    { path: '/books', name: 'Books', component: BooksComponent },
+    { path: '/welcome-page', name: 'WelcomePage', component: WelcomePageComponent, useAsDefault: true    },
+    { path: '/edit-book', name: 'EditBook', component: EditBookComponent },
+    { path: '/contact', name: 'Contact', component: ContactComponent },
+    { path: '/detail/:id', name: 'BookDetail', component: BookDetailComponent },
     ])
 
 export class AppComponent {

@@ -4,12 +4,12 @@ export class InMemoryDataService {
 	createDb() {
 		let books = [
 
-			{ "title": "Romeo and Juliet", "author": "Shakespear" },
-			{ "title": "Odysey", "author": "Homer" },
-			{ "title": "Cooking book", "author": "Gordon Ramsay" },
-			{ "title": "Illiad", "author": "Homer" },
-			{ "title": "Star Wars", "author": "George Lucas" },
-			{ "title": "Beuty and the beast", "author": "Walt Disney" }
+			{ id: 1, title: "Romeo and Juliet", author: "Shakespear" },
+			{ id: 2, title: "Odysey", author: "Homer" },
+			{ id: 3, title: "Cooking book", author: "Gordon Ramsay" },
+			{ id: 4, title: "Illiad", author: "Homer" },
+			{ id: 5, title: "Star Wars", author: "George Lucas" },
+			{ id: 6, title: "Beuty and the beast", author: "Walt Disney" }
 		
 		];
 

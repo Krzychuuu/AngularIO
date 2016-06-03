@@ -9,15 +9,14 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
-var book_1 = require('./book');
 var book_detail_component_1 = require('./book-detail.component');
 var book_service_1 = require('./book.service');
-var add_book_component_1 = require('./add-book.component');
+var router_deprecated_1 = require('@angular/router-deprecated');
 var EditBookComponent = (function () {
-    function EditBookComponent(bookService) {
+    function EditBookComponent(router, bookService) {
+        this.router = router;
         this.bookService = bookService;
         this.addingBook = false;
-        this.edittingBook = false;
     }
     EditBookComponent.prototype.getBooks = function () {
         var _this = this;
@@ -27,12 +26,14 @@ var EditBookComponent = (function () {
         this.getBooks();
     };
     EditBookComponent.prototype.addBook = function () {
-        this.edittingBook = false;
         this.addingBook = true;
-        this.selectedBook = new book_1.Book();
+        this.selectedBook = null;
     };
-    EditBookComponent.prototype.close = function (message) {
-        this.getBooks();
+    EditBookComponent.prototype.close = function (savedBook) {
+        this.addingBook = false;
+        if (savedBook) {
+            this.getBooks();
+        }
     };
     EditBookComponent.prototype.delete = function (book, event) {
         var _this = this;
@@ -49,19 +50,17 @@ var EditBookComponent = (function () {
     EditBookComponent.prototype.onSelect = function (book) {
         this.selectedBook = book;
         this.addingBook = false;
-        this.edittingBook = true;
     };
-    __decorate([
-        core_1.Input(), 
-        __metadata('design:type', String)
-    ], EditBookComponent.prototype, "message", void 0);
+    EditBookComponent.prototype.gotoDetail = function () {
+        this.router.navigate(['BookDetail', { id: this.selectedBook.id }]);
+    };
     EditBookComponent = __decorate([
         core_1.Component({
             selector: 'edit-book',
-            template: "\n\t<h2>Click on the desired book to edit its data</h2>\n\t\t<table class=\"edit-view-table\">\n\t\t<tr>\n\t\t\t<td width=\"50%\">\n\t\t\t\t<ul class=\"book-list\">\n\t\t\t\t\t<li *ngFor=\"let book of books\" (click)=\"onSelect(book)\"\n\t\t\t\t\t\t[class.selected]=\"book === selectedBook\">\n\t\t\t\t\t\t<button class=\"delete-button\" (click)=\"delete(book, $event)\">Remove</button>\n\t\t\t\t\t\t<span class=\"book-list-element\"><b>\"{{book.title}}\"</b>, by: {{book.author}}</span>\n\t\t\t\t\t</li>\n\t\t\t\t</ul>\n\t\t\t\t<button (click)=\"addBook()\">New</button>\n\t\t\t\t<button (click)=\"getBooks()\">Refresh list</button>\n\n\t\t\t</td>\n\t\t\t<td width=\"50%\">\n\t\t\t\t<div *ngIf=\"addingBook\">\n\t\t\t\t\t<h2><b>\"Fill new book's info\":</b></h2>\n\t\t\t\t\t<add-book-detail [book]=\"selectedBook\"></add-book-detail>\n\t\t\t\t</div>\n\t\t\t\t<div *ngIf=\"edittingBook\">\n\t\t\t\t\t<h2><b>Fast edition for:</b></h2>\n\t\t\t\t\t<my-book-detail [book]=\"selectedBook\"></my-book-detail> \n\t\t\t\t</div>\t\t\t\n\t\t\t</td> \n\t\t</tr>\n\t\t</table>\n\t",
-            directives: [book_detail_component_1.BookDetailComponent, add_book_component_1.AddDetailComponent]
+            template: "\n\t<h2>Click on the desired book to edit its data</h2>\n\t\t<table class=\"edit-view-table\">\n\t\t<tr>\n\t\t\t<td width=\"50%\">\n\t\t\t\t<ul class=\"book-list\">\n\t\t\t\t\t<li *ngFor=\"let book of books\" (click)=\"onSelect(book)\"\n\t\t\t\t\t\t[class.selected]=\"book === selectedBook\">\n\t\t\t\t\t\t<button class=\"delete-button\" (click)=\"delete(book, $event)\">Remove</button>\n\t\t\t\t\t\t<span class=\"book-list-element\"><b>\"{{book.title}}\"</b>, by: {{book.author}}</span>\n\t\t\t\t\t</li>\n\t\t\t\t</ul>\n\t\t\t\t<button (click)=\"addBook()\">New</button>\n\t\t\t\t<button (click)=\"getBooks()\">Refresh list</button>\n\n\t\t\t</td>\n\t\t\t<td width=\"50%\">\n\t\t\t\t<div *ngIf=\"addingBook\">\n\t\t\t\t  <my-book-detail (close)=\"close($event)\"></my-book-detail>\n\t\t\t\t</div>\n\n\t\t\t\t<div *ngIf=\"selectedBook\">\n\t\t\t\t  <h2>\n\t\t\t\t    Title: {{selectedBook.title}}<br>\n\t\t\t\t    Author: {{selectedBook.author}}\n\t\t\t\t  </h2>\n\t\t\t\t  <button (click)=\"gotoDetail()\">Edit</button>\n\t\t\t\t</div>\t\t\t\n\t\t\t</td> \n\t\t</tr>\n\t\t</table>\n\t",
+            directives: [book_detail_component_1.BookDetailComponent]
         }), 
-        __metadata('design:paramtypes', [book_service_1.BookService])
+        __metadata('design:paramtypes', [router_deprecated_1.Router, book_service_1.BookService])
     ], EditBookComponent);
     return EditBookComponent;
 }());

@@ -3,6 +3,7 @@ import { Book } from './book';
 import { BookDetailComponent } from './book-detail.component';
 import { BookService } from './book.service';
 import { AddDetailComponent } from './add-book.component';
+import { Router } from '@angular/router-deprecated';
 
 @Component({
 	selector: 'edit-book',
@@ -25,29 +26,31 @@ import { AddDetailComponent } from './add-book.component';
 			</td>
 			<td width="50%">
 				<div *ngIf="addingBook">
-					<h2><b>"Fill new book's info":</b></h2>
-					<add-book-detail [book]="selectedBook"></add-book-detail>
+				  <my-book-detail (close)="close($event)"></my-book-detail>
 				</div>
-				<div *ngIf="edittingBook">
-					<h2><b>Fast edition for:</b></h2>
-					<my-book-detail [book]="selectedBook"></my-book-detail> 
+
+				<div *ngIf="selectedBook">
+				  <h2>
+				    Title: {{selectedBook.title}}<br>
+				    Author: {{selectedBook.author}}
+				  </h2>
+				  <button (click)="gotoDetail()">Edit</button>
 				</div>			
 			</td> 
 		</tr>
 		</table>
 	`,
 
-	directives: [BookDetailComponent, AddDetailComponent]
+	directives: [BookDetailComponent]
 })
 
 export class EditBookComponent implements OnInit {
-	@Input() message: String;
 	books: Book[];
 	selectedBook: Book;
 	addingBook = false;
-	edittingBook = false;
 	error: any;
-	constructor(private bookService: BookService) { }
+
+	constructor(private router: Router, private bookService: BookService) { }
 	getBooks() {
 		this.bookService.getBooks().then(books => this.books = books);
 	}
@@ -55,12 +58,12 @@ export class EditBookComponent implements OnInit {
 		this.getBooks();
 	}
 	addBook() {
-		this.edittingBook = false;
 	    this.addingBook = true;
-	    this.selectedBook = new Book();
+	    this.selectedBook = null;
 	}
-	close(message) {
-		this.getBooks();
+	close(savedBook: Book) {
+		this.addingBook = false;
+		if (savedBook) { this.getBooks(); }
 	}
 	delete(book: Book, event: any) {
 		this.bookService
@@ -74,7 +77,9 @@ export class EditBookComponent implements OnInit {
 	onSelect(book: Book) { 
 		this.selectedBook = book;
 		this.addingBook = false;
-		this.edittingBook = true;
+	}
+	gotoDetail() {
+    	this.router.navigate(['BookDetail', { id: this.selectedBook.id }]);
 	}
 }
 

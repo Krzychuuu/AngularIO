@@ -67,3 +67,8 @@ nav a.router-link-active {
 .ng-invalid {
   border: 2px solid #a94442; /* red */
 }
+.ivalidInfo {
+  color: red;
+  font-size: 8pt;
+  font-family: verdana;
+}

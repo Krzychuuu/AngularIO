@@ -7,6 +7,7 @@ import { RouteParams } from '@angular/router-deprecated';
 	selector: 'my-book-detail',
 	template: `
 	<div *ngIf="book">
+  <h3>You are adding:</h3>
 		<h2>[{{book.title}}], written by: {{book.author}}</h2>
 		<div>
 		    <label>Title: </label>

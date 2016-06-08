@@ -6,7 +6,6 @@ import { BookDetailComponent } from './books/book-detail.component';
 import { RouteConfig, ROUTER_DIRECTIVES, ROUTER_PROVIDERS } from '@angular/router-deprecated';
 import { WelcomePageComponent } from './welcome-page.component';
 import { ContactComponent } from './contact.component';
-//import { ReactiveComponent } from './reactive.component';
 import 'rxjs/Rx';
 import { HTTP_PROVIDERS } from '@angular/http';
 
@@ -21,7 +20,6 @@ import { HTTP_PROVIDERS } from '@angular/http';
     <a [routerLink]="['Books']">Book list</a>
     <a [routerLink]="['EditBook']">Edit book</a>
     <a [routerLink]="['Contact']">Contact</a>
-    //<a [routerLink]="['Reactive']">Reactives</a>
     </nav>
     <hr>
     <router-outlet></router-outlet>
@@ -39,7 +37,6 @@ import { HTTP_PROVIDERS } from '@angular/http';
     { path: '/welcome-page', name: 'WelcomePage', component: WelcomePageComponent, useAsDefault: true    },
     { path: '/edit-book', name: 'EditBook', component: EditBookComponent },
     { path: '/contact', name: 'Contact', component: ContactComponent },
-    //{ path: '/reactive', name: 'Reactive', component: ReactiveComponent },
     { path: '/detail/:id', name: 'BookDetail', component: BookDetailComponent }
     ])
 
